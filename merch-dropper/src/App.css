@@ -1,415 +1,95 @@
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
 
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-  font-family: "Lato", sans-serif;
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
 }
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
+
 body {
-  line-height: 1;
+    line-height:1;
 }
-ol,
-ul {
-  list-style: none;
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
 }
-blockquote,
-q {
-  quotes: none;
+
+nav ul {
+    list-style:none;
 }
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
+
+blockquote, q {
+    quotes:none;
 }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-/* 
-.navStyle {
-  box-shadow: 0 3px 0 0 rgba(236, 236, 236, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.19);
+    border-collapse:collapse;
+    border-spacing:0;
 }
 
-#navTitle {
-  color: #007bff;
-  font-weight: 700;
-  font-size: 1.5rem;
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;  
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
 }
 
-.searchStyle {
-  width: 100%;
-  margin-left: 50%;
-}
-
-.designBtn {
-  text-align: center;
-  margin: 0 5% 0 0;
-}
-
-.footer { */
-  /* position: fixed; */
-  /* right: 0;
-  bottom: 0;
-  left: 0;
-  height: 50px;
-  margin-top: 5vh;
-}
-
-.homepage {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.homeSection {
-  text-align: right;
-  padding: 10vh 0 0 0;
-}
-
-.imgPlaceholder {
-  width: 18vw;
-  height: 20vh;
-  background-color: rgb(233, 233, 233);
-  border-radius: 10px;
-} 
-
-.imgPlaceholderLrg {
-  width: 35vw;
-  height: 66.5vh; 
-  background-color: rgb(233, 233, 233);
-  border-radius: 10px;
-} 
-
-.column {
-  width: 50vw;
-  height: auto;
-  justify-content: ;
-}
-
-.letsGo {
-  width: 10vw;
-}
-
-.learnMore {
-  width: 10vw;
-  margin: 5% 0;
-} */
-
-/* Merchandise Card Classes */
-
-/* .flex {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.cardBodyPadding {
-  padding: 5;
-}
-
-.container-margin {
-  margin: 5px 15px;
-}
-
-.product-card-padding {
-  padding: 5px;
-}
-
-.cardBtn {
-  box-shadow: 0 10px 10px 0 rgba(167, 167, 167, 0.336), 0 3px 8px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 5px;
-}
-
-.line2 {
-  margin: 5% auto;
-  width: 35%;
-  border: 3px solid #ffffff;
-  border-radius: 10px;
-}
-
-.jumboParent {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  width: 100%;
-  background: white; */
- 
-  /* height: 100vh; */
-/* }
-
-
-.cards {
-  height: 50vh;
-}
-
-.cardCont {
-  width: 15%;
-  height: 100%;
-}
-
-.cardTitle {
-  color: #026fc2;
-}
-
-.featuredText {
-  font-size: 2rem;
-} */
-
-/* iPad portrait and landscape */
-@media only screen and (min-width: 768px) and (max-width: 1400px) {
-  /* .designBtn {
-    margin: 0 2.5% 0 0;
-  }
-
-  .jumboParent {
-    height: 80vh;
-    margin: 0 0 5% 0; 
-  } 
-
-  .jumboCont {
-    background-image: url("https://i.ibb.co/C0Tg72y/yellowgirl6.png");
-    height: 100%;
-    background-size: cover;
-  }
-
-  .cardCont {
-    height: 400px;
-    width: 100%;
-  }
-
-  .customImg {
-    display: none;
-  }
-
-  .column {
-      width: 100%;
-      margin-top: 10%;
-    }
-
-  .andMore {
-    font-size: 1.75rem;
-  }
-
-  .p2 {
-    display: none;
-  }
-
-  .letsGo {
-    width: 20vw;
-  }
-
-  .learnMore {
-    width: 20vw;
-  }
-
-  .cards {
-    height: 40vh;
-  } */
-}
-
-/* iPhone portrait and landscape */
-@media only screen and (min-width: 320px) and (max-width: 750px) {
-  .navStyle {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .navLogo {
-    display: none;
-    visibility: none;
-  }
-
-  #navTitle {
-    margin: 0 auto;
-  }
-
-  .navSearch {
-    margin: 5% auto 0 auto;
-  }
-
-  .designBtn {
-    margin: 5% 0 0 0;
-  }
-
-  .jumboParent {
-    height: 80vh;
-    margin: 0 0 5% 0;
-  }
-
-  .jumboCont {
-    background-image: url("https://i.ibb.co/C0Tg72y/yellowgirl6.png");
-    height: 100%;
-    background-size: cover;
-  }
-
-  .customh1 {
-    font-size: 2.5rem;
-  }
-
-  .tshirth1 {
-    font-size: 1.75rem;
-  }
-
-  .andMore {
-    font-size: 1rem;
-  }
-
-  .line2 {
-    display: none;
-  }
-
-  .cardCont {
-    height: 150px;
-    width: 20%;
-  }
-
-  .cardTitle {
-    font-size: 1.8vw;
-  }
-
-  .cardText {
-    display: none;
-  }
-
-  .customImg {
-    display: none;
-  }
-
-  .column {
-    width: 100%;
-  }
-
-  .p2 {
-    display: none;
-  }
-
-  .letsGo {
-    width: 30vw;
-    margin: 5% 0 0 0;
-  }
-
-  .learnMore {
-    width: 30vw;
-  }
-
-  .featuredText {
-    font-size: 0.65rem;
-  }
-
-  .footer {
-    display: none;
-  }
-}
-
-/* iPhone portrait only */
-@media only screen and (min-width: 320px) and (max-width: 650px) {
-  .column {
-    margin: 35% 0 0 0;
-  }
-
-  .cards {
-    height: 25vh;
-  }
+input, select {
+    vertical-align:middle;
 }

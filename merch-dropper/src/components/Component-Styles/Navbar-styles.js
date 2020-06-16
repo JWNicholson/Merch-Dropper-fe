@@ -21,9 +21,9 @@ export const NavbarStyles = createGlobalStyle `
         padding: 0 162px 0 87px;
        
       
-        @media (max-width: 768px) {
-          // display: flex;
-          // flex-direction: column;
+        @media (max-width: 980px) {
+        //   display: flex;
+        //   flex-direction: column;
           display: none;
         }
     } 
@@ -31,11 +31,12 @@ export const NavbarStyles = createGlobalStyle `
     .MobileWrapper {
         display: none;
 
-        @media (max-width: 768px) {
+        @media (max-width: 980px) {
             display: flex;
             justify-content: space-between;
             padding: 0.75rem;
             background: white;
+            max-width: 80%;
             
         }
     }

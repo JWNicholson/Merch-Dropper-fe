@@ -17,14 +17,6 @@ const ProductDisplayDomain = ({ products, addToCart, match, location }) => {
   
   useEffect(() => {
     axiosWithEnv()
-        .get(`/api/users/domain/${domain_name}`)
-        .then((res) => {
-          console.log(res.data)
-          if (res.data.stripe_account) {
-            setConnected(true);
-          }
-        });
-    axiosWithEnv()
       .get(`/api/stores/domain/${domain_name}`)
       // axios
       // .get(
@@ -33,6 +25,7 @@ const ProductDisplayDomain = ({ products, addToCart, match, location }) => {
       .then((res) => {
         storeID = res.data.id;
         localStorage.setItem("storeID", storeID);
+        setConnected(res.data.active)
       })
       .catch((err) => {
         console.log(err);

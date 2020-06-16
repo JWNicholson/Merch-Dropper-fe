@@ -14,7 +14,7 @@ import {
   AccountNumber,
   Divider,
   StorefrontStatusTitle,
-  StorefrontStatusConainer,
+  StorefrontStatusContainer,
   StorefrontStatusDot,
   StorefrontStatus,
   StorefrontTitle,
@@ -37,17 +37,16 @@ const useStyles = makeStyles({
 });
 
 const Settings = () => {
-    let connectStripeURL;
-    if (process.env.REACT_APP_BASE_URL === "development") {
-      connectStripeURL = "http://localhost:3000/stripe-setup";
-    } else {
-      connectStripeURL = "https://merchdropper.store/stripe-setup";
-    }
-    const classes = useStyles()
-    const [stripe, setStripe] = useState("");
-    const [connected, setConnected] = useState(false);
-    const [store, setStore] = useState("");
-
+  let connectStripeURL;
+  if (process.env.REACT_APP_BASE_URL === "development") {
+    connectStripeURL = "http://localhost:3000/stripe-setup";
+  } else {
+    connectStripeURL = "https://merchdropper.store/stripe-setup";
+  }
+  const classes = useStyles();
+  const [stripe, setStripe] = useState("");
+  const [connected, setConnected] = useState(false);
+  const [store, setStore] = useState("");
 
   useEffect(() => {
     async function getInfo() {
@@ -62,7 +61,6 @@ const Settings = () => {
           if (res.data.user.stripe_account) {
             setStripe(res.data.user.stripe_account);
             setConnected(true);
-            
             axiosWithEnv().put(`/api/stores/activate/${res.data.user.id}`);
           }
         });
@@ -81,85 +79,55 @@ const Settings = () => {
 
   return (
     <SettingsContainer>
-      <SettingsH2>Settings</SettingsH2>
-      <SettingsBox>
-        <StripeContainer>
-          <StripeH3>Stripe</StripeH3>
-          <StripeStatusContainer>
-            <StripeStatusTitle>Status:</StripeStatusTitle>
-            {connected ? (
-              <StripeStatus>Connected</StripeStatus>
-            ) : (
-              <Link to="/stripe-setup">
-                <Button
-                  className='stripe-cta'
-                  color="primary"
-                  size="large"
-                  classes={{
-                    root: classes.root,
-                  }}
-                  onClick={()=>{
-                    localStorage.setItem('fromSettings', true)
-                    history.push("/stripe-setup")
-                    window.location.replace(connectStripeURL)
-                  }}
-                >
-                  Connect to Stripe
-                </Button>
-              </Link>
-            )}
-          </StripeStatusContainer>
+      <SettingsH2>Storefront Settings</SettingsH2>
 
-          <AccountContainer>
-            <AccountTitle>Account Number:</AccountTitle>
-            {connected ? (
-              <AccountNumber className='stripeacct'>{stripe}</AccountNumber>
-            ) : (
-              <AccountNumber>No Account</AccountNumber>
-            )}
-          </AccountContainer>
-        </StripeContainer>
+      <StorefrontStatusContainer>
+        <StorefrontStatusTitle>Status:</StorefrontStatusTitle>
+        <StorefrontStatusInner>
+          <StorefrontStatusDot
+            style={
+              connected && store !== ""
+                ? { backgroundColor: "#28E13B" }
+                : { backgroundColor: "red" }
+            }
+          />
+          <StorefrontStatus>
+            {connected && store !== "" ? "Online" : "Incomplete"}
+          </StorefrontStatus>
+        </StorefrontStatusInner>
+      </StorefrontStatusContainer>
+      <AccountContainer>
+        <AccountTitle>Stripe Account Number:</AccountTitle>
+        {connected ? (
+          <AccountNumber className="stripeaccount">{stripe}</AccountNumber>
+        ) : (
+          <AccountNumber className="stripeaccount">
+            <Link
+              className="stripe-cta"
+              onClick={() => {
+                localStorage.setItem("fromSettings", true);
+                history.push("/stripe-setup");
+                window.location.replace(connectStripeURL);
+              }}
+              to="/stripe-setup"
+            >
+              Connect Stripe
+            </Link>
+          </AccountNumber>
+        )}
+      </AccountContainer>
+      <StorefrontNameContainer>
+        <StorefrontTitle>Store Name:</StorefrontTitle>
+        {store ? (
+          <StorefrontName>{store}</StorefrontName>
+        ) : (
+          <AccountNumber>
+            <Link to="/createstore">Create Store</Link>
+          </AccountNumber>
+        )}
+      </StorefrontNameContainer>
 
-        <Divider />
-
-        <StorefrontContainer>
-          <StorefrontH3>Storefront</StorefrontH3>
-          <StorefrontStatusConainer>
-            <StorefrontStatusTitle>Status:</StorefrontStatusTitle>
-            <StorefrontStatusInner>
-              <StorefrontStatusDot
-                style={
-                  connected && store !== ""
-                    ? { backgroundColor: "#28E13B" }
-                    : { backgroundColor: "red" }
-                }
-              />
-              <StorefrontStatus>
-                {connected && store !== "" ? "Online" : "Offline"}
-              </StorefrontStatus>
-            </StorefrontStatusInner>
-          </StorefrontStatusConainer>
-          <StorefrontNameContainer>
-            <StorefrontTitle>Store Name:</StorefrontTitle>
-            {store ? (
-              <StorefrontName>{store}</StorefrontName>
-            ) : (
-              <Link to="/createstore">
-                <Button
-                  className="store-cta" 
-                  color="primary"
-                  size="large"
-                  classes={{
-                    root: classes.root,
-                  }}
-                >
-                  Create Store
-                </Button>
-              </Link>
-            )}
-          </StorefrontNameContainer>
-        </StorefrontContainer>
-      </SettingsBox>
+      <Divider />
     </SettingsContainer>
   );
 };

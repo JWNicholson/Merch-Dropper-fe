@@ -74,11 +74,6 @@ import initialState from './initialState';
                 isFetching: false,
                 error: action.payload
             };
-            ADD_PRODUCT_STATE_START:
-            return {
-                ...state,
-                isFetching: true
-            }
         case ADD_PRODUCT_STATE_SUCCESS:
             return{
                 ...state,

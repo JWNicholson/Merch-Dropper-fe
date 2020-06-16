@@ -6,7 +6,6 @@ export const BigContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-direction:column;
-    background: #F8F8F9;
 `;
 
 export const StyledDiv = styled.div`
@@ -27,7 +26,6 @@ export const SettingsContainer = styled.div`
 
 export const SettingsH2 = styled.h2`
    
-    width: 108px;
     height: 36px;
     margin-bottom: 2%;
 
@@ -79,7 +77,7 @@ export const AccountContainer = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top:2%;
-
+    height: 53px;
 `;
 
 export const StripeH3 =  styled.div` 
@@ -127,7 +125,6 @@ export const StripeStatus = styled.p`
 
 export const AccountTitle = styled.p`
 
-    width: 186px;
     height: 29px;
     left: 256px;
 
@@ -142,7 +139,7 @@ export const AccountTitle = styled.p`
 
 export const AccountNumber = styled.p`
 
-    width: 126px;
+    
     height: 29px;
 
     font-family: Lato;
@@ -157,9 +154,8 @@ export const AccountNumber = styled.p`
 
 export const Divider = styled.div`
 
-    width: 927px;
+    width: 100%;
     height: 0px;
-    margin-left: 8.5%;
     border: 2px solid rgba(0, 0, 0, 0.12);
     transform: rotate(-180deg);
 
@@ -192,8 +188,6 @@ export const StorefrontH3 = styled.h3`
 
 export const StorefrontStatusTitle = styled.h3`
 
-    width: 72px;
-    height: 29px;
  
     font-family: Lato;
     font-style: normal;
@@ -203,26 +197,25 @@ export const StorefrontStatusTitle = styled.h3`
     color: #1C1C2E;
 `;
 
-export const StorefrontStatusConainer = styled.div`
+export const StorefrontStatusContainer = styled.div`
 
     display: flex;
     justify-content: space-between;
-    margin-top: 2%;
-
+    align-items: flex-start;
+    margin: 11px 0;
+    height: 43px;
 `;
 
 export const StorefrontStatusInner = styled.div`
 
-    display: flex; 
-    width: 10%;
-
+    display: flex;
+    align-items: center;
 `;
 
 export const StorefrontStatusDot = styled.span`
-
+  margin-right: 10px;
   height: 16px;
   width: 16px;
-  margin-top: 8%;
   background-color: #28E13B;
   border-radius: 50%;
   display: inline-block;
@@ -231,15 +224,11 @@ export const StorefrontStatusDot = styled.span`
 
 export const StorefrontStatus = styled.p`
 
-    width: 70px;
-    height: 29px;
-    margin-left: 10%;
 
     font-family: Lato;
     font-style: normal;
     font-weight: normal;
     font-size: 24px;
-    line-height: 29px;
     text-align: right;
     color: #1C1C2E;
 
@@ -250,7 +239,7 @@ export const StorefrontNameContainer = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 2%;
-
+    height: 53px;
 `;
 
 
@@ -270,7 +259,6 @@ export const StorefrontTitle = styled.p`
 
 export const StorefrontName = styled.p`
 
-    width: 161px;
     height: 29px;
 
     font-family: Lato;

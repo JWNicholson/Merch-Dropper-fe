@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router";
-// import "./App.css";
+import "./App.css";
 import DevAuth from './components/Auth/DevAuth'
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";

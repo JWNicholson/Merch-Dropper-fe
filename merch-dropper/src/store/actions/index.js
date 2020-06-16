@@ -132,6 +132,14 @@ export const toggleCart = () => {
     }
 };
 
+// reset cart to hidden
+export const RESET_CART = 'RESET_CART'
+export const resetCart = () =>{
+    return {
+        type: RESET_CART
+    }
+}
+
 //search for stores
 export const SEARCH_STORE_START = 'SEARCH_STORE_START';
 export const SEARCH_STORE_SUCCESS = 'SEARCH_STORE_SUCCESS';

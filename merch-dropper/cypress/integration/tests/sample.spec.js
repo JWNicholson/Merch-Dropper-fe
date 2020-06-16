@@ -1,30 +1,45 @@
-describe('My First Test', function () {
-    it('sanity check', function() {
-        expect(true).to.equal(true)
-    })
-})
+describe("My First Test", function () {
+  it("sanity check", function () {
+    expect(true).to.equal(true);
+  });
+});
 
-describe('https://merchdropper.store/', () => {
-    
-    it('contains a Sign in button', () => {  
-        cy.visit('https://merchdropper.store/') 
-        cy.contains('Sign in')
-    })
-    it('contains a Get Started button', () => {
-        cy.visit('https://merchdropper.store/') 
-        cy.contains('Get Started')
-    })
-    it('contains a Learn more button', () => {
-        cy.visit('/') 
-        cy.contains('Learn More')
-    })
-})
+describe("Landing page", () => {
+  it("contains a Dev Auth button", () => {
+    cy.visit("/");
+    cy.contains("Dev Auth");
+  });
+  it("contains a Prod Nav button", () => {
+    cy.contains("Prod Nav");
+  });
+  it("contains an FAQ", () => {
+    cy.contains("Frequently Asked Questions");
+  });
+});
 
-describe('sign in button', () => {
-    it('redirects to auth0 url', () => {
-        cy.visit('/')
-        cy.contains('Sign in').click()
-        cy.url()
-            .should('include', '/login')
+describe("Dev Auth path", () => {
+  it("redirects to register page", () => {
+    cy.contains("Dev Auth").click();
+    cy.url().should("include", "/develop");
+  });
+  it("goes to dashboard", () => {
+    cy.contains("Toggle Login/Register").click();
+    cy.get("input[name=email]").type("bah@gmail.com");
+    cy.get("input[name=password]").type("datking9@");
+    cy.get("button[type=submit]").click();
+    cy.url().should("include", "/dashboard");
+  });
+  describe("dashboard", () => {
+    it("contains the right nav links w/out store", () => {
+        cy.contains('Your Store').should('not.be.visible')    
+        cy.contains("Dashboard")
+        cy.contains("Logout")
     })
-})
+      it("contains inventory section", () => {
+          cy.contains("Inventory")
+      })
+      it("contains storefront settings w/ incomplete status", () => {
+          cy.contains("Status:")
+      })
+  })
+});

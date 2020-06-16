@@ -3,6 +3,7 @@ import {
   REMOVE_CART_PRODUCT,
   CLEAR_CART_PRODUCT,
   TOGGLE_CART,
+  RESET_CART
 } from "../actions";
 import initialState from './initialState';
 
@@ -67,6 +68,11 @@ const CartReducer = (state = initialState, action) => {
         return {
           ...state,
           hidden: !state.hidden,
+        };
+      case RESET_CART:
+        return {
+          ...state,
+          hidden: true,
         };
 
       default:
