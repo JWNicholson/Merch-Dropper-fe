@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
+import {useStyles} from "../components/Component-Styles/addProduct-styles"
 
 const ImageUpload = ({ design, setDesign, designAdded, setDesignAdded }) => {
+  const classes = useStyles();
   let widget = window.cloudinary.createUploadWidget(
     {
       cloudName: "dze74ofbf",
@@ -32,7 +34,7 @@ const ImageUpload = ({ design, setDesign, designAdded, setDesignAdded }) => {
 
   return (
     <Fragment>
-      <button className="designBtn btn btn-primary" onClick={showWidget}>
+      <button className={classes.button} onClick={showWidget}>
         Upload New Design
       </button>
     </Fragment>

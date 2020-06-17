@@ -35,8 +35,7 @@ export const useStyles = makeStyles((theme) => ({
 
     BrandLogo: {
         cursor: "pointer",
-        width: 49,
-        height: 58, 
+        height: 80,
     },
 
     BrandTitle: {
@@ -90,7 +89,6 @@ export const useStyles = makeStyles((theme) => ({
     links: {
         fontFamily: "Lato, sans-serif",
         fontSize: 18,
-        lineHeight: 22,
         color: "#1c1c2e",
         cursor: "pointer",
         "&:first-child": {
@@ -107,12 +105,13 @@ export const useStyles = makeStyles((theme) => ({
     links2:  {
         fontFamily: "Lato, sans-serif",
         fontSize: 18,
-        lineHeight: 22,
         border: 0,
-        borderRadius: 8,
         color: "royalblue",
         background: "none",
-        fontWeight: "bold",        
+        fontWeight: "bold",
+        "&:focus": {
+            outline: "none",
+        }
     },
 
 

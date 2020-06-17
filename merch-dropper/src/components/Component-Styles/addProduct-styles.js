@@ -162,10 +162,12 @@ export const useStyles = makeStyles({
   addButton: {
     width: "344px",
     height: "59px",
+    backgroundColor: "#4556ee",
+  
 
     /* #4455EE Primary */
 
-    background: "#4455EE",
+    // background: "#1c1c2e",
     borderRadius: "10px",
     color: "white",
     fontWeight: "bold",
@@ -173,7 +175,8 @@ export const useStyles = makeStyles({
     fontStyle: "normal",
     textTransform: "none",
     "&:hover": {
-      background: "#3E32CC"
+      backgroundColor: "rgb(69, 86, 238, .87)",
+        color: "#fff"
     }
   },
 
@@ -233,5 +236,25 @@ export const useStyles = makeStyles({
     margin: 5,
     width: 230,
     height: 50
+  },
+  button:{
+    // background:"#3E32CC",
+    display: "inline-block",
+    fontWeight: 400,
+    color: "#fff",
+    textAlign: "center",
+    verticalAlign: "middle",
+    cursor: "pointer",
+    backgroundColor:"#4556ee",
+    border: "1px solid transparent",
+    padding: ".375rem .75rem",
+    fontSize: "1rem",
+    lineHeight: 1.5,
+    borderRadius: ".25rem",
+    transition: "color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out",
+    "&:hover":{
+        backgroundColor: "rgb(69, 86, 238, .87)",
+        color: "#fff"
+    }
   }
 });

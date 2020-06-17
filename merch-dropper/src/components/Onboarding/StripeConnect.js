@@ -14,8 +14,14 @@ import history from "../../utils/history";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { makeAccount } from '../../utils/makeAccount';
 
-const returnToDash = localStorage.getItem('fromSettings')
-console.log(returnToDash)
+let url;
+if (process.env.REACT_APP_BASE_URL === "development") {
+  url = "http://localhost:3000/createstore";
+} else {
+  url = "https://merchdropper.store/createstore";
+}
+// If user skipped stripe setup earlier grab this boolean from localStorage
+const returnToDash = localStorage.getItem("fromSettings")
 
 const getSteps = () => {
   return ["Create Account", "Connect Stripe", "Create Store"];
@@ -32,16 +38,15 @@ const ConnectStripe = (e) => {
 };
 
 const SkipSetup = (e) => {
-  let url;
-  if (process.env.REACT_APP_BASE_URL === "development") {
-    url = "http://localhost:3000/createstore";
-  } else {
-    url = "https://merchdropper.store/createstore";
-  }
-
   e.preventDefault();
-  history.push("/createstore");
-  window.location.replace(url);
+  if(returnToDash){
+    history.push("/dashboard")
+    window.location.replace("/dashboard")
+    localStorage.removeItem('fromSettings')
+  } else {
+    history.push("/createstore");
+    window.location.replace(url);
+  }
 };
 
 const DevStripeConnect = e => {

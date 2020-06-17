@@ -121,10 +121,10 @@ const CheckoutPage = ({
         <SubTotal className="subtotal">
           <span>SubTotal ${total.toFixed(2)}</span><br/>
           <span>Tax: ${quote.quote.tax.toFixed(2)}</span><br/>
-          <span>Shipping: ${quote.quote.shipping.toFixed(2)}</span>
+          <span>Shipping: {cart.length <= 0 ? "$0" : `${quote.quote.shipping.toFixed(2)}`} </span>
         </SubTotal>
       <Total className="total">
-        <span>Total: ${FunctionTotal(total, quote.quote.tax, quote.quote.shipping).toFixed(2)}</span>
+        <span>Total: {cart.length <= 0 ? "$0" :`${FunctionTotal(total, quote.quote.tax, quote.quote.shipping).toFixed(2)}`}</span>
       </Total>
       <StripeCheckoutButton price={FunctionTotal(total, quote.quote.tax, quote.quote.shipping)} domain={domain_name} />
     </CheckoutPageWrapper>

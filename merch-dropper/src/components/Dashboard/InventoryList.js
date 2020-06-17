@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-
+import {useDispatch} from "react-redux";
 import InventoryCard from "./InventoryCard";
 import { axiosWithEnv } from "../../utils/axiosWithEnv";
 import axios from "axios";
+import { ADD_PRODUCT_STATE_SUCCESS } from "../../store/actions";
 
 // The purpose of the InventoryList component is to create a list of products that exist in the user's inventory. 
 
 function InventoryList({ history }) {
-
+  const dispatch = useDispatch()
   const [products, setProducts] = useState([]);
   const [stores, setStores] = useState([]);
 
@@ -34,6 +35,7 @@ function InventoryList({ history }) {
         `/api/products/store/${storeID}`
       );
       setProducts(resProducts.data);
+      dispatch({type: ADD_PRODUCT_STATE_SUCCESS, payload: resProducts.data})
     }
     getInventory();
   }, []);
@@ -51,6 +53,7 @@ function InventoryList({ history }) {
           fullSizeURL={product.fullSizeURL}
           history={history}
           shirtID={product.product_id}
+          id={product.id}
         />
       ))}
     </>

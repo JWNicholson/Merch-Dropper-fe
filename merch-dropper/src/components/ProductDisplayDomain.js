@@ -49,9 +49,9 @@ const ProductDisplayDomain = ({ products, addToCart, match, location }) => {
   return (
     <>
       {shirts.length !== 0 && connected ? (
-        <Container fluid="true" className="container-margin">
+        <Container style={{display: "flex"}}>
           <Row>
-            <Col sm="7" className="flex ">
+            {/* <Col > */}
               {shirts.map((product, id) => (
                 <ProductCard
                   key={id}
@@ -63,8 +63,9 @@ const ProductDisplayDomain = ({ products, addToCart, match, location }) => {
                   addToCart={addToCart}
                 />
               ))}
-            </Col>
-          </Row>
+            {/* </Col> */}
+            </Row>
+          
         </Container>
       ) : (
         <div style={{ height: "65vh", textAlign: "center" }}>

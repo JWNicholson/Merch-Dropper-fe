@@ -1,13 +1,13 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import styled from "styled-components";
 import { NavbarStyles } from "./Component-Styles/Navbar-styles.js";
-import { Media, NavbarText } from "reactstrap";
+
 
 const RootWrapper = styled.div`
   height: 70%;
   width: 60%;
-  background: #fead1c;
+  // background: #;
   position: fixed;
   top: 0;
   right: 0;
@@ -50,34 +50,30 @@ const SideDrawer = ({
   logoutWithRedirect,
   customLogin,
   history,
+  customSignup,
+  inDevelop,
 }) => {
+
   return (
     <RootWrapper>
       <CloseHamburger onClick={closeDrawer}>X</CloseHamburger>
 
-      <LinkDiv
-        onClick={() => {
-          history.push("/designshirt");
-        }}
-      >
-        Design Merch
-      </LinkDiv>
-
-      <LinkDiv
-        onClick={() => {
-          history.push("/products");
-        }}
-      >
-        Buy Merch
-      </LinkDiv>
-
       {localStorage.getItem("profile") ? (
         <LinkDiv onClick={() => logoutWithRedirect()}>Log out</LinkDiv>
       ) : (
-        <LinkDiv onClick={customLogin}>Log In</LinkDiv>
+        <>
+          <LinkDiv onClick={customLogin}>Login</LinkDiv>
+          <LinkDiv onClick={customSignup}>SignUp</LinkDiv>
+          {inDevelop ? 
+            <LinkDiv onClick={closeDrawer} > 
+              <Link to="/develop">Dev Auth</Link>
+            </LinkDiv> 
+            : null 
+          }
+        </>
       )}
-
-      <div className="MediaWrapper">
+      {/* May be relevant to a future team IF you build out user profiles and give them the ability to CRUD their profile and add a picture */}
+      {/* <div className="MediaWrapper">
         {localStorage.getItem("profile") ? (
           <Media
             object
@@ -100,7 +96,7 @@ const SideDrawer = ({
         ) : (
           <p style={{ paddingLeft: "1rem" }}>Guest</p>
         )}
-      </div>
+      </div> */}
     </RootWrapper>
   );
 };
