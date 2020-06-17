@@ -32,7 +32,7 @@ const addProduct = async (history, garment, product, design) => {
       });
       console.log('product to our be', product)
     //
-    const merchDropRes = await axiosWithEnv
+    const merchDropRes = await axiosWithEnv()
       .post("/api/products", {
         ...product,
         fullSizeURL: cloudRes.data.eager[0].secure_url,
