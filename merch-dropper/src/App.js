@@ -24,19 +24,17 @@ import initialState from "./store/reducers/initialState"
 import { resetCart } from "../src/store/actions"
 
 
-
 function App() {
   const [design, setDesign] = useState(initialShirtState.designInfo);
   const [garment, setGarment] = useState(initialShirtState.garment);
   const [product, setProduct] = useState(initialState.products)
   const [thumbRender, setThumbRender] = useState();
   const dispatch = useDispatch();
-
   return (
 
     <div className="App" >
       <NavBar />
-      <div classname="outerContainer" onClick={() => {dispatch(resetCart())}}>
+      <div className="outsideContainer" onClick={() => {dispatch(resetCart())}} >
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/develop" component={DevAuth} />
@@ -86,9 +84,8 @@ function App() {
       <Footer />
       </div>
     </div>
+    
   );
 }
 
 export default App;
-
-

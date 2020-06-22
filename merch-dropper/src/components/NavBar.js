@@ -15,7 +15,7 @@ import { useStyles } from "./Component-Styles/NavBar.js";
 import { useAuth0 } from "./Auth/Auth";
 // logo
 import logo from "../assets/merchdropper-logo.png";
-import { resetCart } from "../store/actions";
+import { resetCart, toggleCart } from "../store/actions";
 
 const NavBar = ({ hidden, history, location }) => {
   const classes = useStyles();
@@ -24,7 +24,7 @@ const NavBar = ({ hidden, history, location }) => {
   const { pathname } = location;
   const domain_name = localStorage.getItem("domain_name");
   const [store_name, setStore_name] = useState();
-
+  const [domainURL, setDomainURL] = useState();
   const [anchorEl, setAnchorEl] = useState(null); // new mobile menu
   const [inDevelop, setInDevelop] = useState(false);
 
@@ -48,6 +48,7 @@ const NavBar = ({ hidden, history, location }) => {
         if (res.status === 200) {
           localStorage.setItem("store_name", res.data.store_name);
           setStore_name(localStorage.getItem("store_name"));
+          setDomainURL(res.data.domain_name)
         }
       })
       .catch((err) => {
@@ -129,7 +130,7 @@ const NavBar = ({ hidden, history, location }) => {
           ) : (
             <>
               {store_name ? (
-                <Link to={`/${store_name}`} className={classes.links}>
+                <Link to={`/${domainURL}`} className={classes.links}>
                   Your Store
                 </Link>
               ) : null}{" "}
@@ -156,6 +157,7 @@ const NavBar = ({ hidden, history, location }) => {
     } else {
       return (
         <nav className={classes.ButtonWrapper}>
+          {/* Checks to see if you're in development mode */}
           {inDevelop ? (
             <>
               <Link className={classes.links} to="/develop">
@@ -193,7 +195,7 @@ const NavBar = ({ hidden, history, location }) => {
           : { display: "block" }
       }
     >
-      {/* <NavbarStyles /> */}
+      {/* Mobile NavBar Consider Making it it's own component and importing it here */}
       <div className={classes.MobileWrapper}>
         <div className={classes.BrandWrapper} onClick={homepageRedirect}>
           <img
@@ -214,25 +216,61 @@ const NavBar = ({ hidden, history, location }) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
             >
+              {/* If your at a store domain and not logged in only render cart and close menu options */}
+            { pathname === `/${domain_name}` && !localStorage.getItem("profile") ?
+              <span> 
+                <MenuItem onClick={()=> {
+                  dispatch(toggleCart())
+                  handleClose()
+                }}>Cart</MenuItem>
+                <MenuItem onClick={handleClose}>Close</MenuItem>
+              </span> 
+              :
+              <span>
+              {/* Checks to see if a user is logged in  */}
               {localStorage.getItem("profile") ?
               <span>
-                <MenuItem onClick={logoutWithRedirect}>Logout</MenuItem>
                 {/* <MenuItem onClick={handleClose}>My account</MenuItem> // if CRUD profiles added */}
+
+                {/* Checks to see if the user logged in as at a store other than their own */}
+                { pathname === `/${domain_name}` && domain_name !== domainURL ?
+                <MenuItem onClick={()=> {
+                  dispatch(toggleCart())
+                  handleClose()
+                }}>Cart</MenuItem>
+                : null}
+                {pathname === "/dashboard" ?
+                <MenuItem>
+                  <Link to={`${domainURL}`}>Your Store</Link>
+                </MenuItem>
+                :
+                <MenuItem>
+                  <Link to="/dashboard">Dashboard</Link>
+                </MenuItem>
+                }
+
+                <MenuItem onClick={logoutWithRedirect}>Logout</MenuItem>
                 <MenuItem onClick={handleClose}>Close</MenuItem>
               </span>
               :
               <span>
               <MenuItem onClick={customLogin}>Login</MenuItem>
               <MenuItem onClick={customSignup}>SignUp</MenuItem>
+
+              {/* Checks to see if your in development mode */}
               {inDevelop ? 
                 <MenuItem onClick={handleClose}>
                   <Link to="/develop">Dev Auth</Link>
                 </MenuItem>
                 : null
               }
+
+
               <MenuItem onClick={handleClose}>Close</MenuItem>
               </span>
               }
+              </span>
+            }
             </Menu>
         </div>
         {hidden ? null : <CartDropDown />}

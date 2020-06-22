@@ -162,14 +162,19 @@ export const GET_QUOTE_START = "GET_QUOTE_START";
 export const GET_QUOTE_SUCCESS = "GET_QUOTE_SUCCESS";
 export const GET_QUOTE_FAILURE = "GET_QUOTE_FAILURE";
 export const GET_STORE_ID = "GET_STORE_ID";
+export const NULL_ORDER_TOKEN = "NULL_ORDER_TOKEN";
 
 export const getQuote = (quote) => dispatch => {
     dispatch({type: GET_QUOTE_START});
     axiosWithEnv()
     .post('/api/quotes', quote)
     .then(res => {
-        console.log('the orderToken', res.data.quote.orderToken)
-        dispatch({type: GET_QUOTE_SUCCESS, payload: res.data})
+        // console.log('POSTED QUOTE',res)
+        if(res.data.quote.orderToken){
+            dispatch({type: GET_QUOTE_SUCCESS, payload: res.data})
+        } else {
+            dispatch({type: NULL_ORDER_TOKEN, payload: res.data})
+        }
     })
     .catch(err => {
         dispatch({type: GET_QUOTE_FAILURE, payload: err})                
