@@ -47,16 +47,17 @@
   },
   "scripts": {
     "start": "npm-run-all start-dev start-mockapi",
-    "start-dev": "env-cmd react-scripts -r @cypress/instrument-cra start",
+    "start-dev": "env-cmd react-scripts -r @cypress/instrument-cra start || react-scripts -r @cypress/instrument-cra start",
     "start-mockapi": "json-server ...",
-    "cypress": "cypress open",
-    "dev": "start-test 3000 cypress",
+    "cypress:run": "cypress run || true",
+    "cypress:coverage": "start-test 3000 cypress:run || true",
+    "cypress:open": "cypress open",
+    "cypress:test": "start-test 3000 cypress:open",
     "client": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest --watchAll",
     "eject": "react-scripts eject",
-    "coverage": "jest --coverage --detectOpenHandles --forceExit || true",
-    "cyp": "node_modules/.bin/cypress open"
+    "coverage": "jest --coverage --detectOpenHandles --forceExit || true"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -107,6 +108,12 @@
     ],
     "setupFiles": [
       "jest-localstorage-mock"
+    ]
+  },
+  "nyc": {
+    "reporter": [
+      "text",
+      "clover"
     ]
   }
 }

@@ -158,6 +158,14 @@ The Scalable Press API is a comprehensive REST service for viewing the product c
 
 Jest is a JavaScript Testing Framework maintained by Facebook, Inc. with a focus on simplicity.
 
+## Cypress <img src="https://www.ideematic.com/wp-content/uploads/2018/07/Cypress-tests-end-to-end.png">
+
+Cypress is a JavaScript Testing Framework easier to use and more impactful than Jest because it shows you directly the site being changed and interacted with.
+
+The coverage file will be merch-dropper/coverage/lcov.info and the script used is cypress:coverage. (currently doesn't work due to an error in the github actions which looks like this:
+level=error msg="failed to read file src/App.js\nopen src/App.js: no such file or directory")
+
+Look in .github/workflows/ci.yml in coverage: to switch things around.
 
 # Contributing
 
