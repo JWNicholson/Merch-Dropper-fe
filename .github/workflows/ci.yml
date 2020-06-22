@@ -19,5 +19,6 @@ jobs:
           REACT_APP_BASE_URL: development
         with:
           coverageCommand: yarn --cwd "merch-dropper" cypress:coverage
-          coverageLocations: "${{github.workspace}}/merch-dropper/coverage/lcov.info:lcov"
+          # Need to use Clover, as NYC lcov generator doesn't support absolute paths
+          coverageLocations: "${{github.workspace}}/merch-dropper/coverage/clover.xmlinfo:clover"
           debug: true
