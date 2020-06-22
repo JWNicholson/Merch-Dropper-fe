@@ -109,5 +109,11 @@
     "setupFiles": [
       "jest-localstorage-mock"
     ]
+  },
+  "nyc": {
+    "reporter": [
+      "text",
+      "clover"
+    ]
   }
 }

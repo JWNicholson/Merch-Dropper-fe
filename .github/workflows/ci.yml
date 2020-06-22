@@ -3,22 +3,6 @@ name: build
 on: [push, pull_request]
 
 jobs:
-  test:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
-        node: [12, 10]
-    name: Test ${{ matrix.os }}/${{ matrix.node }}
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
-        with:
-          node-version: ${{ matrix.node }}
-      - run: yarn install
-      - run: yarn test
-        env:
-          CI: true
   coverage:
     name: Test and publish test coverage
     runs-on: ubuntu-latest
@@ -27,12 +11,14 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: "12"
-      - run: cd merch-dropper && yarn install
+      - run: yarn --cwd "merch-dropper" install
       - uses: paambaati/codeclimate-action@v2.4.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
           CI: true
-        with: 
-          coverageCommand: yarn --cwd "merch-dropper" cypress:coverage 
-          coverageLocations: "merch-dropper/coverage/lcov.info:lcov"
+          REACT_APP_BASE_URL: development
+        with:
+          coverageCommand: yarn --cwd "merch-dropper" cypress:coverage
+          # Need to use Clover, as NYC lcov generator doesn't support absolute paths
+          coverageLocations: "${{github.workspace}}/merch-dropper/coverage/clover.xml:clover"
           debug: true
