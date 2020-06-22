@@ -20,5 +20,5 @@ jobs:
         with:
           coverageCommand: yarn --cwd "merch-dropper" cypress:coverage
           # Need to use Clover, as NYC lcov generator doesn't support absolute paths
-          coverageLocations: "${{github.workspace}}/merch-dropper/coverage/clover.xmlinfo:clover"
+          coverageLocations: "${{github.workspace}}/merch-dropper/coverage/clover.xml:clover"
           debug: true
