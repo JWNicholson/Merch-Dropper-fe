@@ -29,7 +29,8 @@ const StripeCheckoutButton = ({ price, domain, history }) => {
       })
       .then(res => {
         alert("payment successful");
-        history.push("/products");
+        // history.push("/products");
+        history.push(`/${domain}`);
       })
       .catch(error => {
         console.dir("payment error", error);
