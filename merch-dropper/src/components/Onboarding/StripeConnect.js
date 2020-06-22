@@ -44,6 +44,7 @@ const SkipSetup = (e) => {
     window.location.replace("/dashboard")
     localStorage.removeItem('fromSettings')
   } else {
+    console.log(url)
     history.push("/createstore");
     window.location.replace(url);
   }

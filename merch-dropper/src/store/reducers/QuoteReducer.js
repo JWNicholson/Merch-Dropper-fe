@@ -1,4 +1,4 @@
-import {GET_QUOTE_FAILURE, GET_QUOTE_START, GET_QUOTE_SUCCESS, ADD_ADDRESS_SUCCESS, ADD_PRODUCT_QUOTE, SET_DESIGNID_QUOTE} from "../actions"
+import {GET_QUOTE_FAILURE, GET_QUOTE_START, GET_QUOTE_SUCCESS, ADD_ADDRESS_SUCCESS, ADD_PRODUCT_QUOTE, SET_DESIGNID_QUOTE, NULL_ORDER_TOKEN} from "../actions"
 
 export const initialQuoteState =  {
     isReadyToMount: false,
@@ -84,7 +84,7 @@ export const QuoteReducer = (state = initialQuoteState, action) => {
                 ...state,
                 quote: action.payload,
                 isFetching: false,
-                isReadyToMount: false
+                isReadyToMount: true
                 
             };
         case GET_QUOTE_FAILURE:
@@ -92,6 +92,13 @@ export const QuoteReducer = (state = initialQuoteState, action) => {
                 ...state,
                 isFetching: false,
                 error: action.payload
+        };
+        case NULL_ORDER_TOKEN:
+            return{
+                ...state,
+                isFetching: false,
+                quote: action.payload,
+                error: "orderToken is null"
         };
         case ADD_ADDRESS_SUCCESS:
             return{

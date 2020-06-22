@@ -24,6 +24,7 @@ const NavBar = ({ hidden, history, location }) => {
   const { pathname } = location;
   const domain_name = localStorage.getItem("domain_name");
   const [store_name, setStore_name] = useState();
+  const [domainURL, setDomainURL] = useState();
   const [anchorEl, setAnchorEl] = useState(null); // new mobile menu
   const [inDevelop, setInDevelop] = useState(false);
 
@@ -47,6 +48,7 @@ const NavBar = ({ hidden, history, location }) => {
         if (res.status === 200) {
           localStorage.setItem("store_name", res.data.store_name);
           setStore_name(localStorage.getItem("store_name"));
+          setDomainURL(res.data.domain_name)
         }
       })
       .catch((err) => {
@@ -128,7 +130,7 @@ const NavBar = ({ hidden, history, location }) => {
           ) : (
             <>
               {store_name ? (
-                <Link to={`/${store_name}`} className={classes.links}>
+                <Link to={`/${domainURL}`} className={classes.links}>
                   Your Store
                 </Link>
               ) : null}{" "}
@@ -231,15 +233,22 @@ const NavBar = ({ hidden, history, location }) => {
                 {/* <MenuItem onClick={handleClose}>My account</MenuItem> // if CRUD profiles added */}
 
                 {/* Checks to see if the user logged in as at a store other than their own */}
-                { pathname === `/${domain_name}` && pathname !== store_name ?
+                { pathname === `/${domain_name}` && domain_name !== domainURL ?
                 <MenuItem onClick={()=> {
                   dispatch(toggleCart())
                   handleClose()
                 }}>Cart</MenuItem>
                 : null}
+                {pathname === "/dashboard" ?
+                <MenuItem>
+                  <Link to={`${domainURL}`}>Your Store</Link>
+                </MenuItem>
+                :
                 <MenuItem>
                   <Link to="/dashboard">Dashboard</Link>
                 </MenuItem>
+                }
+
                 <MenuItem onClick={logoutWithRedirect}>Logout</MenuItem>
                 <MenuItem onClick={handleClose}>Close</MenuItem>
               </span>

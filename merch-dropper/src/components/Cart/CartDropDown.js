@@ -1,4 +1,5 @@
-import React from "react";
+//import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
@@ -75,6 +76,8 @@ const CustomButton = styled(Button)`
   }
 `;
 
+
+
 const SingleCartItem = ({ item: { thumbnailURL, price, name, quantity } }) => (
   <CartItemDiv className="cart-item">
     <CartItemImage src={thumbnailURL} alt="item" />
@@ -90,9 +93,11 @@ const SingleCartItem = ({ item: { thumbnailURL, price, name, quantity } }) => (
 
 const CartDropdown = ({ cart, history, dispatch }) => {
 
+  
   const domain_name = localStorage.getItem("domain_name")
   const quote = initialQuoteState.sendQuote;
     return (
+     
       <CartDropdownDiv className="cart-dropdown">
         <CartItemsDiv className="cart-items">
           {cart.filter(
@@ -135,6 +140,7 @@ const CartDropdown = ({ cart, history, dispatch }) => {
           GO TO CHECKOUT
         </CustomButton>
       </CartDropdownDiv>
+    
     );
 };
 
