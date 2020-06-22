@@ -24,7 +24,7 @@ const NavBar = ({ hidden, history, location }) => {
   const { pathname } = location;
   const domain_name = localStorage.getItem("domain_name");
   const [store_name, setStore_name] = useState();
-
+  const [domainURL, setDomainURL] = useState();
   const [anchorEl, setAnchorEl] = useState(null); // new mobile menu
   const [inDevelop, setInDevelop] = useState(false);
 
@@ -48,6 +48,7 @@ const NavBar = ({ hidden, history, location }) => {
         if (res.status === 200) {
           localStorage.setItem("store_name", res.data.store_name);
           setStore_name(localStorage.getItem("store_name"));
+          setDomainURL(res.data.domain_name)
         }
       })
       .catch((err) => {
@@ -129,7 +130,7 @@ const NavBar = ({ hidden, history, location }) => {
           ) : (
             <>
               {store_name ? (
-                <Link to={`/${store_name}`} className={classes.links}>
+                <Link to={`/${domainURL}`} className={classes.links}>
                   Your Store
                 </Link>
               ) : null}{" "}
