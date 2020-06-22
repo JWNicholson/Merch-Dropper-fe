@@ -12,8 +12,8 @@ const HandleScalableMockup = async (garment, setGarment, design, setDesign, prod
       const data = await scalableData(garment);
            
       // shirtImage saves/posts the shirt preview to the back end
-      const shirtImage = await axios.post(
-        "https://merch-dropper.herokuapp.com/api/products/mockup",
+      const shirtImage = await axiosWithEnv().post(
+        "/api/products/mockup",
         data,
         {
           headers: {
