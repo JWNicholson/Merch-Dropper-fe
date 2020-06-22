@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 import { useSelector } from 'react-redux';
 import MerchDropperLogo from "../assets/MerchDropperLogo.JPG";
 import { axiosWithEnv } from "../utils/axiosWithEnv";
+import QuoteError from "./Modals/QuoteError";
 
 const StripeCheckoutButton = ({ price, domain, history }) => {
   const priceForStripe = price * 100;
@@ -16,8 +17,10 @@ const StripeCheckoutButton = ({ price, domain, history }) => {
       "Content-Type": "application/json"
     }
   };
+
   // grabs the orderToken to complete payment process and send to backend calculate application fee
   const tokenSelector = useSelector(state => state.QuoteReducer.quote)
+  
   const onToken = token => {
     token.domain_name = domain;
     token.orderToken = tokenSelector.quote.orderToken;
@@ -34,24 +37,25 @@ const StripeCheckoutButton = ({ price, domain, history }) => {
       .catch(error => {
         console.dir("payment error", error);
         alert("There was an issue with your payment.");
+        history.push(`${token.domain_name}/checkout`)
       });
   };
 
+  
   return (
-    // add ternary here to protect buyers from clicking on button before ordertoken is ready
-    <StripeCheckout
-      label="Finish Checkout"
-      name="MerchDropper"
-      billingAddress={true}
-      shippingAddress={false}
-      zipCode={true}
-      currency='USD'
-      image={`${MerchDropperLogo}`} // might be cause of 400 stripe bug
-      description={`Your total is $${price}`}
-      amount={priceForStripe}
-      panelLabel="Pay Now"
-      token={onToken}
-      stripeKey={publishableKey}
+      <StripeCheckout
+        label="Finish Checkout"
+        name="MerchDropper"
+        billingAddress={true}
+        shippingAddress={false}
+        zipCode={true}
+        currency='USD'
+        image={`${MerchDropperLogo}`} // might be cause of 400 stripe bug
+        description={`Your total is $${price}`}
+        amount={priceForStripe}
+        panelLabel="Pay Now"
+        token={onToken}
+        stripeKey={publishableKey}
     />
   );
 };

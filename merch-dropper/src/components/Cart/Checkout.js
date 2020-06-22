@@ -1,5 +1,5 @@
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector } from "react-redux"
 import axios from 'axios';
 import { axiosWithEnv } from '../../utils/axiosWithEnv'
@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
 import StripeCheckoutButton from "../StripeButton";
+import QuoteError from "../Modals/QuoteError"
 import {initialQuoteState} from "../../store/reducers/QuoteReducer";
 // import {addAddress, getQuote, setQuote} from "../../store/actions"
 
@@ -22,6 +23,7 @@ import {
   setQuote,
   getQuote
 } from "../../store/actions/index";
+import Spinner from '../Component-Styles/Spinner';
 
 const CheckoutPage = ({
   cart,
@@ -31,7 +33,8 @@ const CheckoutPage = ({
   removeItem,
   clearItem,
 }) => {
-
+const [checkError, setCheckError] = useState(false)
+const [ready, setReady] = useState(false)
  const quote = useSelector(state => state.QuoteReducer.quote)
   const dispatch = useDispatch();
   const { domain_name } = match.params;
@@ -39,8 +42,9 @@ const CheckoutPage = ({
   const FunctionTotal=(a,b,c) => {
       return a+b+c
     }
+  const orderToken = quote.quote.orderToken
     
-  useEffect(() => {   
+  useEffect(() => {  
        axiosWithEnv()
         .get(
           `/api/stores/domain/${domain_name}`
@@ -51,6 +55,10 @@ const CheckoutPage = ({
         // )
       .then((res) => {
         dispatch(getQuote(sendQuote))
+        setTimeout(()=>{
+          setCheckError(true) // make the modal wait until the dispatch has been sent
+          setReady(true)
+        }, 2000)
         if (Number(res.data.id) !== Number(localStorage.getItem("storeID"))) {
           localStorage.setItem("storeID", Number(res.data.id));
           window.location.reload();
@@ -58,18 +66,15 @@ const CheckoutPage = ({
       })
       .catch((err) => {
         console.log(err);
+        // future note to add modal for better errors
       });
       
   }, [match.params, domain_name,]);
 
-// const CheckoutPage = ({ cart, total, addItem, removeItem, clearItem }) => {
-  // const { domain_name } = useParams();
-  console.log('checkout params', domain_name)
-
   return (
     quote.quote   ? 
     <CheckoutPageWrapper className="checkout-page">
-       
+       {!orderToken && checkError  ? <QuoteError /> : null}
       <CheckoutHeader className="checkout-header">
         <HeaderBlock className="header-block">
           <span>Product</span>
@@ -126,7 +131,12 @@ const CheckoutPage = ({
       <Total className="total">
         <span>Total: {cart.length <= 0 ? "$0" :`${FunctionTotal(total, quote.quote.tax, quote.quote.shipping).toFixed(2)}`}</span>
       </Total>
-      <StripeCheckoutButton price={FunctionTotal(total, quote.quote.tax, quote.quote.shipping)} domain={domain_name} />
+      {ready ? 
+        <StripeCheckoutButton price={FunctionTotal(total, quote.quote.tax, quote.quote.shipping)} domain={domain_name} />
+        :
+        <Spinner />
+      }
+
     </CheckoutPageWrapper>
     : <div>Redirecting to Checkout</div>
   );
