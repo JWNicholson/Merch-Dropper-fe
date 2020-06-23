@@ -31,4 +31,17 @@ export default HorizontalAlign;
 const HorizontalSelect = styled.select`
   margin: 10px 0 0 138px;
   border-radius: 4px;
+  background-color: #4455ee;
+  &:visited {
+    background-color: #4455ee;
+  }
+  &:active {
+    background-color: #4455ee;
+  }
+  &:hover {
+    background-color: rgb(69, 86, 238, .87);
+    color: #fff
+  }
 `;
+
+

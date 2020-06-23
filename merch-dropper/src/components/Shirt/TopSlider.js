@@ -51,9 +51,9 @@ const SliderBox = styled.div`
     cursor: pointer;
     animate: 0.2s;
     box-shadow: 0px 0px 0px #000000;
-    background: #026fc2;
+    background: #4455ee;
     border-radius: 6px;
-    border: 1px solid #014980;
+    border: 1px solid #4455ee;
   }
   input[type="range"]::-webkit-slider-thumb {
     box-shadow: 2px 2px 4px #828282;
@@ -67,7 +67,7 @@ const SliderBox = styled.div`
     margin-top: -7px;
   }
   input[type="range"]:focus::-webkit-slider-runnable-track {
-    background: #026fc2;
+    background: #4455ee;
   }
   input[type="range"]::-moz-range-track {
     width: 350px;
@@ -75,9 +75,9 @@ const SliderBox = styled.div`
     cursor: pointer;
     animate: 0.2s;
     box-shadow: 0px 0px 0px #000000;
-    background: #026fc2;
+    background: #4455ee;
     border-radius: 6px;
-    border: 1px solid #014980;
+    border: 1px solid #4455ee;
   }
   input[type="range"]::-moz-range-thumb {
     box-shadow: 2px 2px 4px #828282;
@@ -98,14 +98,14 @@ const SliderBox = styled.div`
     color: transparent;
   }
   input[type="range"]::-ms-fill-lower {
-    background: #026fc2;
-    border: 1px solid #014980;
+    background:#4455ee;
+    border: 1px solid #4455ee;
     border-radius: 12px;
     box-shadow: 0px 0px 0px #000000;
   }
   input[type="range"]::-ms-fill-upper {
-    background: #026fc2;
-    border: 1px solid #014980;
+    background:#4455ee;
+    border: 1px solid #4455ee;
     border-radius: 12px;
     box-shadow: 0px 0px 0px #000000;
   }
@@ -120,9 +120,9 @@ const SliderBox = styled.div`
     cursor: pointer;
   }
   input[type="range"]:focus::-ms-fill-lower {
-    background: #026fc2;
+    background: #4455ee;
   }
   input[type="range"]:focus::-ms-fill-upper {
-    background: #026fc2;
+    background: #4455ee;
   }
 `;

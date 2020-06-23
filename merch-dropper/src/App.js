@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Route, Switch } from "react-router";
 import { useDispatch } from "react-redux";
 import "./App.css";
@@ -31,7 +31,8 @@ function App() {
   const [thumbRender, setThumbRender] = useState();
   const dispatch = useDispatch();
   return (
-    <div className="App">
+
+    <div className="App" >
       <NavBar />
       <div className="outsideContainer" onClick={() => {dispatch(resetCart())}} >
       <Switch>
@@ -81,8 +82,10 @@ function App() {
         <Route exact path="/:domain_name/checkout" component={CheckoutPage} />
       </Switch>
       <Footer />
+      </div>
     </div>
-    </div> 
+    
+    
   );
 }
 
