@@ -23,6 +23,14 @@ const onRedirectCallback = (appState) => {
   );
 };
 
+function noop() {}
+
+if (process.env.NODE_ENV !== 'development') {
+  console.log = noop;
+  console.warn = noop;
+  console.error = noop;
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter history={history}>
