@@ -41,9 +41,15 @@ const CheckoutPage = ({
   const { domain_name } = match.params;
   const sendQuote = useSelector(state => state.QuoteReducer.sendQuote)
   const FunctionTotal=(a,b,c) => {
-      return a+b+c
+    return a+b+c
   }
   let orderToken = quote.quote.orderToken || quote.orderToken || null
+  useEffect(()=>{
+    console.log('ordertoken runs')
+    if(orderToken === undefined){
+      orderToken = null;
+    }
+  },[])
     
   useEffect(() => {  
        axiosWithEnv()
@@ -55,7 +61,8 @@ const CheckoutPage = ({
         //   `https://merch-dropper.herokuapp.com/api/stores/domain/${domain_name}`
         // )
       .then((res) => {
-        dispatch(getQuote(sendQuote))
+        dispatch(getQuote(sendQuote));
+        
         setTimeout(()=>{
           setCheckError(true) // make the modal wait until the dispatch has been sent
           setReady(true)
