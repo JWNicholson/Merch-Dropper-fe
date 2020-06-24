@@ -36,13 +36,14 @@ const CheckoutPage = ({
   const [checkError, setCheckError] = useState(false)
   const [ready, setReady] = useState(false)
   const quote = useSelector(state => state.QuoteReducer.quote)
+  console.log(quote)
   const dispatch = useDispatch();
   const { domain_name } = match.params;
   const sendQuote = useSelector(state => state.QuoteReducer.sendQuote)
   const FunctionTotal=(a,b,c) => {
       return a+b+c
   }
-  const orderToken = quote.quote.orderToken
+  const orderToken = quote.orderToken
     
   useEffect(() => {  
        axiosWithEnv()
