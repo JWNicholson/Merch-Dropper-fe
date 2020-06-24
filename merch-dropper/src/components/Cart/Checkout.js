@@ -45,7 +45,6 @@ const CheckoutPage = ({
   }
   let orderToken = quote.quote.orderToken || quote.orderToken || null
   useEffect(()=>{
-    console.log('ordertoken runs')
     if(orderToken === undefined){
       orderToken = null;
     }
