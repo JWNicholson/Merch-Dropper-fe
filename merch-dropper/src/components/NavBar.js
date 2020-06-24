@@ -41,7 +41,7 @@ const NavBar = ({ hidden, history, location }) => {
   };
   if (localStorage.getItem("profile")) {
     
-    const userID = JSON.parse(localStorage.getItem("profile")).id;
+    const userID = localStorage.getItem("id");
     axiosWithAuth()
       .get(`/api/stores/user/${userID}`)
       .then((res) => {
@@ -70,7 +70,7 @@ const NavBar = ({ hidden, history, location }) => {
 
   let url = "";
 
-  if (process.env.REACT_APP_BASE_URL === "development") {
+  if ((process.env.REACT_APP_BASE_URL === "development")) {
     url = "http://localhost:3000/redirect";
   } else {
     url = "https://merchdropper.store/redirect";
