@@ -49,7 +49,7 @@ if(quote.quote.orderToken){
   orderToken = null;
 }
 
-console.log(orderToken)
+
     
   useEffect(() => {  
        axiosWithEnv()
