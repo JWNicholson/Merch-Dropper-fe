@@ -43,7 +43,7 @@ const CheckoutPage = ({
   const FunctionTotal=(a,b,c) => {
       return a+b+c
   }
-  const orderToken = quote.orderToken
+  let orderToken = quote.quote.orderToken || quote.orderToken || null
     
   useEffect(() => {  
        axiosWithEnv()
