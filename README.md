@@ -2,8 +2,6 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5d2ef315d90fe5b4a344/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/Merch-Dropper-fe/test_coverage)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/43f81f48-6f72-4820-9349-51d988b5b63e/deploy-status)](https://app.netlify.com/sites/flamboyant-minsky-4b61e4/deploys)
-
 <!-- 🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
 
 🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
