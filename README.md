@@ -12,9 +12,6 @@
 
 # Merch Dropper
 
-Deployed URL: https://www.merchdropper.store/
-Go to the Contributing section for important info on how to get started on developing.
-
 ## Contributors
 
 
